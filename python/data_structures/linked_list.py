@@ -1,13 +1,4 @@
-
-class LinkedNode:
-    data = None
-    next = None
-
-    def __init__(self, data):
-        self.data = data
-
-    def __repr__(self):
-        return str(self.data)
+from data_structures.node import Node
 
 
 class LinkedList:
@@ -22,10 +13,10 @@ class LinkedList:
 
     def append(self, value):
         if self.head is None:
-            self.head = LinkedNode(value)
+            self.head = Node(value)
             self.tail = self.head
         else:
-            self.tail.next = LinkedNode(value)
+            self.tail.next = Node(value)
             self.tail = self.tail.next
 
     def search(self, value):
@@ -42,7 +33,7 @@ class LinkedList:
 
         while n.next is not None:
             if n == node:
-                new_node = LinkedNode(value)
+                new_node = Node(value)
                 new_node.next = n.next
                 n.next = new_node
                 return
@@ -55,7 +46,7 @@ class LinkedList:
 
         while node:
             if index == pos - 1:
-                new_node = LinkedNode(value)
+                new_node = Node(value)
                 new_node.next = node.next
                 node.next = new_node
                 return True

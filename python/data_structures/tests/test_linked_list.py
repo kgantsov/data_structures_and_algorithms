@@ -4,7 +4,7 @@ from unittest import TestCase
 from data_structures.linked_list import LinkedList
 
 
-class TestUtils(TestCase):
+class TestLinkedList(TestCase):
 
     def test_init(self):
         lst = LinkedList()
@@ -104,4 +104,3 @@ class TestUtils(TestCase):
 
         index = lst.index(777)
         self.assertIsNone(index)
-
