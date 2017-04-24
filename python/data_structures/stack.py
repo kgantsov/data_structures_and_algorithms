@@ -4,6 +4,12 @@ from data_structures.node import Node
 class Stack:
     top = None
 
+    def __init__(self, lst=None):
+        lst = lst or []
+
+        for value in lst:
+            self.push(value)
+
     def push(self, value):
         new_top = Node(value)
 
