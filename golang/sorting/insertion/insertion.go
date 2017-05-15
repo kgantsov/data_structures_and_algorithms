@@ -1,4 +1,4 @@
-package insert
+package insertion
 
 func Sort(list []int) {
 	for i := 1; i < len(list); i++ {

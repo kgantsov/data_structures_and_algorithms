@@ -1,4 +1,4 @@
-package insert
+package insertion
 
 import (
 	"math/rand"
@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestBubbleSort(t *testing.T) {
+func TestInsertionSort(t *testing.T) {
 	list := []int{6, 8, 45, 1, 84, 149, 9, 17}
 	expectedList := []int{1, 6, 8, 9, 17, 45, 84, 149}
 
