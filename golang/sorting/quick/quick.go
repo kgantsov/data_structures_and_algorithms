@@ -1,7 +1,7 @@
 package quick
 
 func Sort(list []int) {
-	SortHelper(list, 0, len(list) - 1)
+	SortHelper(list, 0, len(list)-1)
 }
 
 func SortHelper(list []int, left int, right int) {
@@ -11,8 +11,8 @@ func SortHelper(list []int, left int, right int) {
 
 	index := partition(list, left, right)
 
-	if left < index - 1 {
-		SortHelper(list, left, index - 1)
+	if left < index-1 {
+		SortHelper(list, left, index-1)
 	}
 
 	if index < right {
@@ -23,7 +23,7 @@ func SortHelper(list []int, left int, right int) {
 }
 
 func partition(list []int, left int, right int) int {
-	pivot := list[(left + right) / 2]
+	pivot := list[(left+right)/2]
 
 	for left <= right {
 		for list[left] < pivot {
