@@ -26,6 +26,10 @@ type LinkedList struct {
 func NewLinkedList(args ...int) *LinkedList {
 	list := new(LinkedList)
 
+	for _, v := range args {
+		list.append(v)
+	}
+
 	return list
 }
 

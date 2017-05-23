@@ -4,6 +4,25 @@ import (
 	"testing"
 )
 
+func TestNewLinkedList(t *testing.T) {
+	list := NewLinkedList(0, 5, 10, 15, 20, 25)
+	list.append(777)
+	list.append(32)
+
+	if list.String() != "[0, 5, 10, 15, 20, 25, 777, 32]" {
+		t.Error("Expected", "[0, 5, 10, 15, 20, 25, 777]", ", got ", list.String())
+	}
+
+	list = NewLinkedList(0)
+	list.append(17)
+	list.append(-45)
+
+	if list.String() != "[0, 17, -45]" {
+		t.Error("Expected", "[0, 5, 10, 15, 20, 25, 777]", ", got ", list.String())
+	}
+
+}
+
 func TestLinkedListAppend(t *testing.T) {
 	list := NewLinkedList()
 	list.append(10)
