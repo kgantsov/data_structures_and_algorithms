@@ -10,7 +10,7 @@ func TestNewLinkedList(t *testing.T) {
 	list.append(32)
 
 	if list.String() != "[0, 5, 10, 15, 20, 25, 777, 32]" {
-		t.Error("Expected", "[0, 5, 10, 15, 20, 25, 777]", ", got ", list.String())
+		t.Error("Expected", "[0, 5, 10, 15, 20, 25, 777, 32]", ", got ", list.String())
 	}
 
 	list = NewLinkedList(0)
@@ -18,7 +18,7 @@ func TestNewLinkedList(t *testing.T) {
 	list.append(-45)
 
 	if list.String() != "[0, 17, -45]" {
-		t.Error("Expected", "[0, 5, 10, 15, 20, 25, 777]", ", got ", list.String())
+		t.Error("Expected", "[0, 17, -45]", ", got ", list.String())
 	}
 
 }
@@ -103,13 +103,13 @@ func TestLinkedSearch(t *testing.T) {
 	value, ok = list.search(11)
 
 	if value != 0 && ok != false {
-		t.Error("Expected", 10, true, ", got ", value, ok)
+		t.Error("Expected", 0, true, ", got ", value, ok)
 	}
 
 	value, ok = list.search(0)
 
 	if value != 0 && ok != false {
-		t.Error("Expected", 10, true, ", got ", value, ok)
+		t.Error("Expected", 0, true, ", got ", value, ok)
 	}
 }
 
@@ -135,12 +135,12 @@ func TestLinkedIndex(t *testing.T) {
 	index, ok = list.index(11)
 
 	if index != 0 && ok != false {
-		t.Error("Expected", 10, true, ", got ", index, ok)
+		t.Error("Expected", 0, true, ", got ", index, ok)
 	}
 
 	index, ok = list.index(0)
 
 	if index != 0 && ok != false {
-		t.Error("Expected", 10, true, ", got ", index, ok)
+		t.Error("Expected", 0, true, ", got ", index, ok)
 	}
 }
