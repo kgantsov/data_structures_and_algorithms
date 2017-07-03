@@ -2,6 +2,7 @@ package hash_map
 
 import (
 	"testing"
+	"reflect"
 )
 
 func assetEqual(t *testing.T, expected, actual interface{}) {
@@ -259,4 +260,93 @@ func TestHashMapDeleteNonexistentKey(t *testing.T) {
 
 	ok = m.del("cz")
 	assetEqual(t, false, ok)
+}
+
+func TestHashMapKeys(t *testing.T) {
+	m := NewHashMap()
+
+	m.set("en", "English")
+	m.set("ua", "Ukrainian")
+
+	keys := m.keys()
+	assetEqual(t, 2, len(keys))
+
+	for _, key := range []string {"en", "ua"} {
+		assetEqual(t, true, contains(keys, key))
+	}
+
+	m.set("ru", "Russian")
+	m.set("sv", "Swedish")
+	m.set("au", "Australian")
+	m.set("us", "USA")
+
+	keys = m.keys()
+	assetEqual(t, 6, len(keys))
+
+	for _, key := range []string {"en", "ua", "ru", "sv", "au", "us"} {
+		assetEqual(t, true, contains(keys, key))
+	}
+
+	m.set("pl", "Poland")
+	m.set("it", "Italian")
+
+	keys = m.keys()
+	assetEqual(t, 8, len(keys))
+
+	for _, key := range []string {"en", "ua", "ru", "sv", "au", "us", "pl", "it"} {
+		assetEqual(t, true, contains(keys, key))
+	}
+}
+
+
+func TestHashMapValues(t *testing.T) {
+	m := NewHashMap()
+
+	m.set("en", "English")
+	m.set("ua", "Ukrainian")
+
+	values := m.values()
+	assetEqual(t, 2, len(values))
+
+	for _, value := range []string {"English", "Ukrainian"} {
+		assetEqual(t, true, contains(values, value))
+	}
+
+	m.set("ru", "Russian")
+	m.set("sv", "Swedish")
+	m.set("au", "Australian")
+	m.set("us", "USA")
+
+	values = m.values()
+	assetEqual(t, 6, len(values))
+
+	for _, value := range []string {"English", "Ukrainian", "Russian", "Swedish", "Australian", "USA"} {
+		assetEqual(t, true, contains(values, value))
+	}
+
+	m.set("pl", "Poland")
+	m.set("it", "Italian")
+
+	values = m.values()
+	assetEqual(t, 8, len(values))
+
+	for _, value := range []string {"English", "Ukrainian", "Russian", "Swedish", "Australian", "USA", "Poland", "Italian"} {
+		assetEqual(t, true, contains(values, value))
+	}
+}
+
+func contains(s interface{}, elem interface{}) bool {
+	arrV := reflect.ValueOf(s)
+
+	if arrV.Kind() == reflect.Slice {
+		for i := 0; i < arrV.Len(); i++ {
+			// XXX - panics if slice element points to an unexported struct field
+			// see https://golang.org/pkg/reflect/#Value.Interface
+			if arrV.Index(i).Interface() == elem {
+				return true
+			}
+		}
+	}
+
+	return false
 }

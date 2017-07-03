@@ -132,6 +132,30 @@ func (m *HashMap) del(key string) bool {
 	return false
 }
 
+func (m *HashMap) keys() []string {
+	var keys []string
+
+	for i := range m.hashTable {
+		for j := range m.hashTable[i] {
+			keys = append(keys, m.hashTable[i][j].key)
+		}
+	}
+
+	return keys
+}
+
+func (m *HashMap) values() []interface{} {
+	var values []interface{}
+
+	for i := range m.hashTable {
+		for j := range m.hashTable[i] {
+			values = append(values, m.hashTable[i][j].value)
+		}
+	}
+
+	return values
+}
+
 func (m *HashMap) load() float64 {
 	return float64(m.length) / float64(m.capacity)
 }
