@@ -1,6 +1,5 @@
 package set
 
-
 import (
 	"testing"
 )
@@ -68,7 +67,7 @@ func TestSet_Add(t *testing.T) {
 }
 
 func TestSet_Delete(t *testing.T) {
-	mySet := NewSet( 5, 10, 15, 777, 32)
+	mySet := NewSet(5, 10, 15, 777, 32)
 
 	if mySet.Len() != 5 {
 		t.Error("Expected", 5, ", got ", mySet.Len())
@@ -91,7 +90,6 @@ func TestSet_Delete(t *testing.T) {
 	}
 }
 
-
 func TestSet_Intersection(t *testing.T) {
 	set1 := NewSet()
 	set2 := NewSet()
@@ -102,8 +100,8 @@ func TestSet_Intersection(t *testing.T) {
 		t.Error("Expected", 2, ", got ", resSet.Len())
 	}
 
-	set1 = NewSet( 3, 10, 10, 11, 15, 16, 25)
-	set2 = NewSet( 1, 2, 3, 4, 5, 6, 7, 8, 9)
+	set1 = NewSet(3, 10, 10, 11, 15, 16, 25)
+	set2 = NewSet(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
 	resSet = set1.Intersection(set2)
 
@@ -114,8 +112,8 @@ func TestSet_Intersection(t *testing.T) {
 		t.Error("Expected", true, ", got ", resSet.IsPresent(3))
 	}
 
-	set1 = NewSet( )
-	set2 = NewSet( 1, 2, 3, 4, 5, 6, 7, 8, 9)
+	set1 = NewSet()
+	set2 = NewSet(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
 	resSet = set1.Intersection(set2)
 
@@ -123,7 +121,7 @@ func TestSet_Intersection(t *testing.T) {
 		t.Error("Expected", 0, ", got ", resSet.Len())
 	}
 
-	set1 = NewSet( 5, 8, 14, 1)
+	set1 = NewSet(5, 8, 14, 1)
 	set2 = NewSet()
 
 	resSet = set1.Intersection(set2)
@@ -132,8 +130,8 @@ func TestSet_Intersection(t *testing.T) {
 		t.Error("Expected", 0, ", got ", resSet.Len())
 	}
 
-	set1 = NewSet( 10, 15, 777)
-	set2 = NewSet( 10, 215, 777, 24)
+	set1 = NewSet(10, 15, 777)
+	set2 = NewSet(10, 215, 777, 24)
 
 	resSet = set1.Intersection(set2)
 
@@ -168,8 +166,8 @@ func TestSet_Difference(t *testing.T) {
 		t.Error("Expected", 2, ", got ", resSet.Len())
 	}
 
-	set1 = NewSet( 3, 10, 5, 15)
-	set2 = NewSet(  3, 4, 5, 6, 7, 8, 10)
+	set1 = NewSet(3, 10, 5, 15)
+	set2 = NewSet(3, 4, 5, 6, 7, 8, 10)
 
 	resSet = set1.Difference(set2)
 
@@ -180,8 +178,8 @@ func TestSet_Difference(t *testing.T) {
 		t.Error("Expected", true, ", got ", resSet.IsPresent(15))
 	}
 
-	set1 = NewSet( )
-	set2 = NewSet( 1, 2, 3, 4, 5, 6, 7, 8, 9)
+	set1 = NewSet()
+	set2 = NewSet(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
 	resSet = set1.Difference(set2)
 
@@ -189,7 +187,7 @@ func TestSet_Difference(t *testing.T) {
 		t.Error("Expected", 0, ", got ", resSet.Len())
 	}
 
-	set1 = NewSet( 5, 8, 14, 1)
+	set1 = NewSet(5, 8, 14, 1)
 	set2 = NewSet()
 
 	resSet = set1.Difference(set2)
@@ -210,8 +208,8 @@ func TestSet_Difference(t *testing.T) {
 		t.Error("Expected", true, ", got ", resSet.IsPresent(1))
 	}
 
-	set1 = NewSet( 15, 777, 5)
-	set2 = NewSet( 10, 215, 24, 5, 7)
+	set1 = NewSet(15, 777, 5)
+	set2 = NewSet(10, 215, 24, 5, 7)
 
 	resSet = set1.Difference(set2)
 
@@ -236,8 +234,8 @@ func TestSet_Union(t *testing.T) {
 		t.Error("Expected", 2, ", got ", resSet.Len())
 	}
 
-	set1 = NewSet( )
-	set2 = NewSet(  3, 4, 5)
+	set1 = NewSet()
+	set2 = NewSet(3, 4, 5)
 
 	resSet = set1.Union(set2)
 
@@ -254,7 +252,7 @@ func TestSet_Union(t *testing.T) {
 		t.Error("Expected", true, ", got ", resSet.IsPresent(5))
 	}
 
-	set1 = NewSet( 3, 8, 9)
+	set1 = NewSet(3, 8, 9)
 	set2 = NewSet()
 
 	resSet = set1.Union(set2)
@@ -272,8 +270,8 @@ func TestSet_Union(t *testing.T) {
 		t.Error("Expected", true, ", got ", resSet.IsPresent(9))
 	}
 
-	set1 = NewSet( 15, 777, 5)
-	set2 = NewSet( 10, 5, 7)
+	set1 = NewSet(15, 777, 5)
+	set2 = NewSet(10, 5, 7)
 
 	resSet = set1.Union(set2)
 
