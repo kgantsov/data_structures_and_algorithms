@@ -83,6 +83,81 @@ func removeNode(value int, node *Node) *Node {
 	return nil
 }
 
+func findMinHeight(node *Node) int {
+	if node == nil {
+		return -1
+	}
+	left := findMinHeight(node.left)
+	right := findMinHeight(node.right)
+
+	if left < right {
+		return left + 1
+	} else {
+		return right + 1
+	}
+}
+
+func findMaxHeight(node *Node) int {
+	if node == nil {
+		return -1
+	}
+	left := findMaxHeight(node.left)
+	right := findMaxHeight(node.right)
+
+	if left > right {
+		return left + 1
+	} else {
+		return right + 1
+	}
+}
+
+func inOrderTraversal(node *Node) []int {
+	var res []int
+
+	if node.left != nil {
+		res = append(res, inOrderTraversal(node.left)...)
+	}
+
+	res = append(res, node.value)
+
+	if node.right != nil {
+		res = append(res, inOrderTraversal(node.right)...)
+	}
+	return res
+}
+
+func preOrderTraversal(node *Node) []int {
+	var res []int
+
+	res = append(res, node.value)
+
+	if node.left != nil {
+		res = append(res, preOrderTraversal(node.left)...)
+	}
+
+	if node.right != nil {
+		res = append(res, preOrderTraversal(node.right)...)
+	}
+	return res
+}
+
+func postOrderTraversal(node *Node) []int {
+	var res []int
+
+	if node.left != nil {
+		res = append(res, postOrderTraversal(node.left)...)
+	}
+
+	if node.right != nil {
+		res = append(res, postOrderTraversal(node.right)...)
+	}
+
+	res = append(res, node.value)
+
+	return res
+}
+
+
 func (bst *BinarySearchTree) Add(value int) {
 	node := bst.root
 	if node == nil {
@@ -162,4 +237,41 @@ func (bst *BinarySearchTree) IsPresent(value int) bool {
 
 func (bst *BinarySearchTree) Remove(value int) {
 	bst.root = removeNode(value, bst.root)
+}
+
+func (bst *BinarySearchTree) FindMinHeight() int {
+	return findMinHeight(bst.root)
+}
+
+func (bst *BinarySearchTree) FindMaxHeight() int {
+	return findMaxHeight(bst.root)
+}
+
+func (bst *BinarySearchTree) IsBalanced() bool {
+	min := bst.FindMinHeight()
+	max := bst.FindMaxHeight()
+
+	if min >= max - 1 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func (bst *BinarySearchTree) InOrderTraversal() []int {
+	values := inOrderTraversal(bst.root)
+
+	return values
+}
+
+func (bst *BinarySearchTree) PreOrderTraversal() []int {
+	values := preOrderTraversal(bst.root)
+
+	return values
+}
+
+func (bst *BinarySearchTree) PostOrderTraversal() []int {
+	values := postOrderTraversal(bst.root)
+
+	return values
 }
