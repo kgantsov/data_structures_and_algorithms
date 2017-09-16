@@ -2,16 +2,15 @@ package queue
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
 type Node struct {
-	value int
+	value interface{}
 	next  *Node
 }
 
-func NewNode(value int) *Node {
+func NewNode(value interface{}) *Node {
 	node := new(Node)
 	node.value = value
 
@@ -23,11 +22,11 @@ type Queue struct {
 	tail *Node
 }
 
-func NewQueue(args ...int) *Queue {
+func NewQueue(args ...interface{}) *Queue {
 	list := new(Queue)
 
 	for _, v := range args {
-		list.enqueue(v)
+		list.Enqueue(v)
 	}
 
 	return list
@@ -43,16 +42,16 @@ func (q *Queue) String() string {
 	}
 
 	for node.next != nil {
-		values = append(values, strconv.Itoa(node.value))
+		values = append(values, fmt.Sprintf("%v", node.value))
 
 		node = node.next
 	}
-	values = append(values, strconv.Itoa(node.value))
+	values = append(values, fmt.Sprintf("%v", node.value))
 
 	return fmt.Sprintf("[%s]", strings.Join(values, ", "))
 }
 
-func (q *Queue) enqueue(value int) {
+func (q *Queue) Enqueue(value interface{}) {
 	newTail := NewNode(value)
 
 	if q.head == nil {
@@ -64,7 +63,7 @@ func (q *Queue) enqueue(value int) {
 	}
 }
 
-func (q *Queue) dequeue() (value int, ok bool) {
+func (q *Queue) Dequeue() (value interface{}, ok bool) {
 
 	if q.head == nil {
 		return 0, false
@@ -75,10 +74,18 @@ func (q *Queue) dequeue() (value int, ok bool) {
 	}
 }
 
-func (q *Queue) peek() (value int, ok bool) {
+func (q *Queue) Peek() (value interface{}, ok bool) {
 	if q.head == nil {
 		return 0, false
 	} else {
 		return q.head.value, true
+	}
+}
+
+func (q *Queue) Empty() bool {
+	if q.head == nil {
+		return true
+	} else {
+		return false
 	}
 }
