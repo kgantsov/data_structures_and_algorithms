@@ -1,5 +1,7 @@
 package bst
 
+import "github.com/kgantsov/data_structures_and_algorithms/data_structures/queue"
+
 type Node struct {
 	value int
 	left  *Node
@@ -272,6 +274,33 @@ func (bst *BinarySearchTree) PreOrderTraversal() []int {
 
 func (bst *BinarySearchTree) PostOrderTraversal() []int {
 	values := postOrderTraversal(bst.root)
+
+	return values
+}
+
+func (bst *BinarySearchTree) LevelOrderTraversal() []int {
+	var values []int
+	var node *Node
+	q := queue.NewQueue()
+
+	if bst.root != nil {
+		q.Enqueue(bst.root)
+
+		for q.Empty() != true {
+			v, ok := q.Dequeue()
+			if ok {
+				node = v.(*Node)
+
+				values = append(values, node.value)
+				if node.left != nil {
+					q.Enqueue(node.left)
+				}
+				if node.right != nil {
+					q.Enqueue(node.right)
+				}
+			}
+		}
+	}
 
 	return values
 }

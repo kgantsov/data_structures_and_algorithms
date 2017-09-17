@@ -297,3 +297,25 @@ func TestBinarySearchTree_PostOrderTraversal(t *testing.T) {
 		t.Error("Expected", expectedList, ", got ", list)
 	}
 }
+
+func TestBinarySearchTree_LevelOrderTraversal(t *testing.T) {
+	bst := NewBinarySearchTree()
+
+	bst.Add(9)
+	bst.Add(4)
+	bst.Add(17)
+	bst.Add(3)
+	bst.Add(6)
+	bst.Add(22)
+	bst.Add(5)
+	bst.Add(7)
+	bst.Add(20)
+	bst.Add(10)
+
+	list := bst.LevelOrderTraversal()
+	expectedList := []int{9, 4, 17, 3, 6, 10, 22, 5, 7, 20}
+
+	if !reflect.DeepEqual(list, expectedList) {
+		t.Error("Expected", expectedList, ", got ", list)
+	}
+}
