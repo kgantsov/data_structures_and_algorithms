@@ -5,8 +5,8 @@ import (
 )
 
 type BloomFilter struct {
-	capacity    int
-	probability float32
+	Capacity    int
+	Probability float64
 	size        int
 	hashTable   []int
 	hashesNum   int
@@ -14,6 +14,8 @@ type BloomFilter struct {
 
 func NewBloomFilter(probability float64, capacity int) *BloomFilter {
 	bloomFilter := new(BloomFilter)
+	bloomFilter.Probability = probability
+	bloomFilter.Capacity = capacity
 
 	bloomFilter.size = int(math.Ceil(
 		(float64(capacity) * math.Log(probability)) / math.Log(1/math.Pow(2, math.Log(2))),
