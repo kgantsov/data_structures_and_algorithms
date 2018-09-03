@@ -50,3 +50,7 @@ func (b *BloomFilter) Check(key string) bool {
 
 	return true
 }
+
+func (b *BloomFilter) GetSize() int {
+	return b.size
+}
