@@ -54,3 +54,7 @@ func (b *BloomFilter) Check(key string) bool {
 func (b *BloomFilter) GetSize() int {
 	return b.size
 }
+
+func (b *BloomFilter) GetCapacity() int {
+	return b.Capacity
+}
