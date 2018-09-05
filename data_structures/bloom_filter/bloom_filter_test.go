@@ -10,7 +10,7 @@ func assetEqual(t *testing.T, expected, actual interface{}) {
 	}
 }
 
-func TestNewBloomFilter(t *testing.T) {
+func TestSetBloomFilter(t *testing.T) {
 	b := NewBloomFilter(0.001, 10)
 
 	assetEqual(t, false, b.Check("user:35"))
